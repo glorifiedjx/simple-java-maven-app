@@ -1,7 +1,5 @@
 node{
   stage('SCM Checkout') {
-    
-    
     git 'https://github.com/glorifiedjx/simple-java-maven-app.git'
   }
   stage('Compile-Package') {
