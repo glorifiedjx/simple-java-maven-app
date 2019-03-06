@@ -1,10 +1,20 @@
-node{
-  stage('SCM Checkout') {
-    git 'https://github.com/glorifiedjx/simple-java-maven-app.git'
-  }
-  stage('Compile-Package') {
-    def mvnHome = tool name: '', type: 'maven'
-    sh "echo ${mvnHome}"
-    sh "${mvnHome}/bin/mvn package"
-  }
+pipeline { 
+    agent {
+      label 'maven'
+    }
+    stages { 
+        stage('SCM Checkout') { 
+            steps { 
+               echo 'This is a minimal pipeline.'
+               git 'https://github.com/glorifiedjx/simple-java-maven-app.git'
+            }
+        }
+        stage('Compile-Package') {
+          steps {
+            def mvnHome = tool name: '', type: 'maven'
+            sh "echo hello ${mvnHome}"
+            sh "mvn package"      
+          }
+        }
+    }
 }
