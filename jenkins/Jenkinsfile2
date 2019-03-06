@@ -1,20 +1,21 @@
-pipeline { 
-    agent {
-      label 'maven'
-    }
-    stages { 
-        stage('SCM Checkout') { 
-            steps { 
-               echo 'This is a minimal pipeline.'
-               git 'https://github.com/glorifiedjx/simple-java-maven-app.git'
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
             }
         }
-        stage('Compile-Package') {
-          steps {
-            def mvnHome = tool name: '', type: 'maven'
-            sh "echo hello ${mvnHome}"
-            sh "mvn package"      
-          }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
         }
     }
 }
